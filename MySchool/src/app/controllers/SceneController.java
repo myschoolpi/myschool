@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 
 public class SceneController {
 	void changeScreen(ActionEvent event, String screenName) throws IOException {
-		Parent parent = FXMLLoader.load(getClass().getResource(screenName));
+		Parent parent = FXMLLoader.load(getClass().getResource("../../resources/views/"+screenName));
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		
-		window.setScene(new Scene(parent));
+		window.setScene(new Scene(parent, 800, 400));
 		window.show();
 	}
 }

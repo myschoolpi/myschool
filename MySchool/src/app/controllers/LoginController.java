@@ -3,6 +3,9 @@ package app.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.io.IOException;
+
 import app.models.*;
 import app.services.*;
 
@@ -17,6 +20,7 @@ public class LoginController {
 	private ProfessorService professorService= null;
 	private Funcionario func = null;
 	private FuncionarioService funcService = null;
+	private SceneController sc = null;
 	
 	@FXML
 	private TextField emailTF;
@@ -41,6 +45,8 @@ public class LoginController {
 	
 	@FXML
 	void login(ActionEvent event){
+		sc = new SceneController();
+		
 		String email = emailTF.getText();
 		String senha = passwordTF.getText();
 		
@@ -52,7 +58,11 @@ public class LoginController {
 			aluno = alunoService.alunoLogin(email, senha);
 			
 			if(aluno !=null){
-				System.out.println("LOGADO");
+				try {
+					sc.changeScreen(event, "homeAluno.fxml");
+				} catch (IOException e) {
+					System.out.println("ERRO AO MUDAR DE TELA");
+				}
 			} else {
 				System.out.println("N EXISTE");
 			}
