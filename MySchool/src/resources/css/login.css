@@ -1,0 +1,20 @@
+.hbox{
+	-fx-min-width: 800px;
+	-fx-min-height: 600px;
+}
+
+.vbox {
+	-fx-min-width: 400px;
+}
+
+.info {
+	-fx-background-color: linear-gradient(to bottom, #2196F3, #BBDEFB);
+}
+
+.login {
+	-fx-padding: 40px 0px 0px 30px;
+}
+
+.login-button {
+	-fx-background-color: #0D47A1;
+}
