@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="hbox" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="app.controllers.LoginController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="hbox" stylesheets="@../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="app.controllers.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/login.css">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/global.css">
          <styleClass>
             <String fx:value="vbox" />
             <String fx:value="info" />
@@ -34,7 +34,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 25;" stylesheets="@../css/login.css" HBox.hgrow="NEVER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 25;" stylesheets="@../css/global.css" HBox.hgrow="NEVER">
          <children>
             <Label text="Login" textFill="#0d47a1">
                <font>

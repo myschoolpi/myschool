@@ -3,9 +3,6 @@ package app.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.io.IOException;
-
 import app.models.*;
 import app.services.*;
 
@@ -13,6 +10,7 @@ public class LoginController {
 	private final String ALUNO = "Aluno";
 	private final String PROFESSOR = "Professor";
 	private final String FUNC = "Funcionario";
+	private final int CARGO_ADMIN = 1;
 	
 	private Aluno aluno = null;
 	private AlunoService alunoService = null;
@@ -58,11 +56,7 @@ public class LoginController {
 			aluno = alunoService.alunoLogin(email, senha);
 			
 			if(aluno !=null){
-				try {
-					sc.changeScreen(event, "homeAluno.fxml");
-				} catch (IOException e) {
-					System.out.println("ERRO AO MUDAR DE TELA");
-				}
+				sc.changeScreen(event, "homeAluno.fxml");
 			} else {
 				System.out.println("N EXISTE");
 			}
@@ -71,18 +65,24 @@ public class LoginController {
 			prof = professorService.professorLogin(email, senha);
 			
 			if(prof !=null){
-				System.out.println("LOGADO");
+				sc.changeScreen(event, "homeProfessor.fxml");
 			} else {
 				System.out.println("N EXISTE");
 			}
 		} else if (role.equals(FUNC)) {
 			funcService = new FuncionarioService();
 			func = funcService.funcionarioLogin(email, senha);
-			if(func !=null){
-				System.out.println("LOGADO");
+			
+			if(func !=null ){
+				if(func.getCargo().id == CARGO_ADMIN) {
+					sc.changeScreen(event, "homeAdmin.fxml");
+				} else {
+					System.out.println("ACESSO NEGADO");
+				}
 			} else {
 				System.out.println("N EXISTE");
 			}
+			
 		} else {
 			System.out.println("Selecione uma opção");
 		}

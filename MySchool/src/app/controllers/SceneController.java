@@ -8,12 +8,20 @@ import javafx.scene.*;
 import javafx.stage.Stage;
 
 public class SceneController {
-	void changeScreen(ActionEvent event, String screenName) throws IOException {
-		Parent parent = FXMLLoader.load(getClass().getResource("../../resources/views/"+screenName));
+	void changeScreen(ActionEvent event, String screenName)  {
 		
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Parent parent;
+		try {
+			parent = FXMLLoader.load(getClass().getResource("../../resources/views/"+screenName));
+			
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(new Scene(parent, 800, 600));
+			window.show();
+		} catch (IOException e) {
+			System.out.println("ERRO AO MUDAR DE TELA");
+		}
 		
-		window.setScene(new Scene(parent, 800, 400));
-		window.show();
+		
 	}
 }
