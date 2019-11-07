@@ -19,6 +19,7 @@ public class SceneController {
 			window.setScene(new Scene(parent, 800, 600));
 			window.show();
 		} catch (IOException e) {
+			System.out.println(e);
 			System.out.println("ERRO AO MUDAR DE TELA");
 		}
 		
