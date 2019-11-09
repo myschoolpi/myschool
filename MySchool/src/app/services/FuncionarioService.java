@@ -10,7 +10,7 @@ public class FuncionarioService implements BaseService {
 	private Cargo cargo = null;
 
 	@Override
-	public Funcionario create(Object obj) {
+	public String create(Object obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

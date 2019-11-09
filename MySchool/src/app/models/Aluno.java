@@ -3,7 +3,7 @@ package app.models;
 public class Aluno extends User {
 	private String endereco;
 	private String rg;
-	
+
 	public String getEndereco() {
 		return endereco;
 	}

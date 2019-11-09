@@ -12,28 +12,34 @@
       <TextField fx:id="nomeTF" maxHeight="-Infinity" maxWidth="300.0" minHeight="-Infinity" minWidth="-Infinity" promptText="Nome">
          <font>
             <Font name="Calibri" size="14.0" />
-         </font></TextField>
+         </font>
+      </TextField>
       <TextField fx:id="enderecoTF" maxWidth="400.0" promptText="Endereço">
          <font>
             <Font name="Calibri" size="14.0" />
-         </font></TextField>
+         </font>
+      </TextField>
       <TextField fx:id="emailTF" maxWidth="250.0" promptText="Email">
          <font>
             <Font name="Calibri" size="14.0" />
-         </font></TextField>
+         </font>
+      </TextField>
+      <TextField fx:id="phoneTF" maxWidth="150.0" promptText="Teleforne" />
       <HBox prefHeight="18.0" prefWidth="200.0" spacing="30.0">
          <children>
             <TextField fx:id="cpfTF" promptText="CPF">
                <font>
                   <Font name="Calibri" size="14.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <TextField fx:id="rgTF" promptText="RG">
                <font>
                   <Font name="Calibri" size="14.0" />
-               </font></TextField>
+               </font>
+            </TextField>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#cadastrarAluno" styleClass="login-button" stylesheets="@../css/global.css" text="CADASTRAR" textFill="WHITE">
+      <Button mnemonicParsing="false" onAction="#cadastrarProfessor" styleClass="login-button" stylesheets="@../css/global.css" text="CADASTRAR" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
