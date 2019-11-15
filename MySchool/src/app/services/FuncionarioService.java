@@ -3,6 +3,7 @@ package app.services;
 import app.models.Funcionario;
 import app.models.Cargo;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class FuncionarioService implements BaseService {
@@ -56,7 +57,7 @@ public class FuncionarioService implements BaseService {
 	}
 
 	@Override
-	public Funcionario[] getMany() {
+	public ArrayList<Object> getMany() {
 		// TODO Auto-generated method stub
 		return null;
 	}

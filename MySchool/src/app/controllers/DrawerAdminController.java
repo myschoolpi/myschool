@@ -20,6 +20,9 @@ public class DrawerAdminController {
 
     @FXML
     private Button cadastrarAlunoBt;
+    
+    @FXML
+    private Button cadastrarDisciplinaBt;
 
     @FXML
     private Button cadastrarTurmaBt;
@@ -33,7 +36,9 @@ public class DrawerAdminController {
 
     @FXML
     void changePageCurso(ActionEvent event) {
-//    	changePage("cadastrarCurso.fxml");
+    	CadastrarCursoController cursoController = new CadastrarCursoController();
+    	topBarLb.setText("Cadastrar Curso");
+    	changePage("cadastrarCurso.fxml", cursoController);
     }
 
     @FXML
@@ -48,6 +53,13 @@ public class DrawerAdminController {
 //    	changePage("cadastrarTurma.fxml");
     }
     
+    @FXML
+    void changePageDisciplina(ActionEvent event) {
+    	CadastrarDisciplinaController disciplinaController = new CadastrarDisciplinaController();
+    	topBarLb.setText("Cadastrar Disciplina");
+    	changePage("cadastrarDisciplina.fxml", disciplinaController);
+    }
+    
     public void changePage(String pageName, Object controller) {
     	FXMLLoader loader;
 		try{
@@ -56,7 +68,7 @@ public class DrawerAdminController {
 			content.getChildren().clear();
 			content.getChildren().add(loader.load());
 		} catch(IOException e) {
-			System.out.println("ERRO DE CARREGAMENTO DA PÁGINA" + e.toString());
+			e.printStackTrace();
 		}
 	}
 	

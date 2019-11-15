@@ -39,3 +39,10 @@
 .bg {
 	-fx-background-color: #E3F2FD;
 }
+
+.secondary-button {
+	-fx-border-width: 1;
+	-fx-border-color: #0D47A1;
+	-fx-background-color: transparent;
+	-fx-border-radius: 5;
+}

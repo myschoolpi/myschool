@@ -3,6 +3,9 @@ package app.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import javax.swing.JOptionPane;
+
 import app.models.Aluno;
 import app.services.*;
 
@@ -37,7 +40,7 @@ public class CadastrarAlunoController {
     	aluno.setRg(rgTF.getText());
     	aluno.setSenha(cpfTF.getText());
     	
-    	as.create(aluno);
+    	JOptionPane.showMessageDialog(null, as.create(aluno));
     }
 
 }

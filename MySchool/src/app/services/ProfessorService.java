@@ -1,8 +1,8 @@
 package app.services;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import app.models.Aluno;
 import app.models.Professor;
 
 public class ProfessorService implements BaseService {
@@ -77,7 +77,7 @@ public class ProfessorService implements BaseService {
 	}
 
 	@Override
-	public Professor[] getMany() {
+	public ArrayList<Object> getMany() {
 		// TODO Auto-generated method stub
 		return null;
 	}

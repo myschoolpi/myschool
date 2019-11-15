@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="250.0" spacing="15.0" styleClass="info" stylesheets="@../css/global.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="250.0" spacing="15.0" styleClass="info" stylesheets="@../css/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,13 +17,14 @@
             <Insets bottom="20.0" />
          </VBox.margin>
       </ImageView>
+      <Button fx:id="cadastrarProfBt" mnemonicParsing="false" onAction="#changePageProf" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Professor" />
+      <Button fx:id="cadastrarAlunoBt" mnemonicParsing="false" onAction="#changePageAluno" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Aluno" />
+      <Button fx:id="cadastrarDisciplinaBt" mnemonicParsing="false" onAction="#changePageDisciplina" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Disciplina" />
       <Button fx:id="cadastrarCursoBt" mnemonicParsing="false" onAction="#changePageCurso" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Curso">
          <font>
             <Font name="Calibri" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="cadastrarProfBt" mnemonicParsing="false" onAction="#changePageProf" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Professor" />
-      <Button fx:id="cadastrarAlunoBt" mnemonicParsing="false" onAction="#changePageAluno" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Aluno" />
       <Button fx:id="cadastrarTurmaBt" mnemonicParsing="false" onAction="#changePageTurma" styleClass="drawer-button" stylesheets="@../css/global.css" text="Cadastrar Turma" />
    </children>
 </VBox>

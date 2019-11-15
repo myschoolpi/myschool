@@ -1,5 +1,6 @@
 package app.services;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import app.models.Aluno;
 import app.models.User;
@@ -73,7 +74,7 @@ public class AlunoService implements BaseService {
 	}
 
 	@Override
-	public Aluno[] getMany() {
+	public ArrayList<Object> getMany() {
 		// TODO Auto-generated method stub
 		return null;
 	}
