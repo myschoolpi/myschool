@@ -35,7 +35,7 @@ public class CursoService implements BaseService {
 				
 				bd.rs = bd.st.getGeneratedKeys();
 				
-				//id do curso
+				//id do curso inserido
 				int n;
 				
 				if(bd.rs.next())
