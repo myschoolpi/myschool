@@ -46,14 +46,20 @@
                       <TableColumn fx:id="nomeColumn" editable="false" maxWidth="220.0" prefWidth="220.0" text="Disciplina" />
                     </columns>
                   </TableView>
-                  <Button mnemonicParsing="false" onAction="#addDisciplina" styleClass="secondary-button" stylesheets="@../css/global.css" text="ADICIONAR">
-                     <font>
-                        <Font name="Calibri Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="30.0">
+                     <children>
+                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#addDisciplina" styleClass="secondary-button" stylesheets="@../css/global.css" text="+">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#removeDisciplina" styleClass="secondary-button" stylesheets="@../css/global.css" text="-">
+                           <font>
+                              <Font name="Calibri Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                   <Button mnemonicParsing="false" onAction="#verDisciplinas" styleClass="secondary-button" text="VER DISCIPLINAS ADICIONADAS">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />

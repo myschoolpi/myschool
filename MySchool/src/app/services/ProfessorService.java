@@ -78,8 +78,35 @@ public class ProfessorService implements BaseService {
 
 	@Override
 	public ArrayList<Object> getMany() {
-		// TODO Auto-generated method stub
-		return null;
+		BD bd = new BD();
+		ArrayList<Object> listaProfessores = new ArrayList<Object>();
+		if(bd.getConnection()) {
+			String sql = "SELECT * FROM tb_professor";
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.rs = bd.st.executeQuery();
+				
+				while(bd.rs.next()) {
+					prof = new Professor();
+					
+					prof.id = bd.rs.getInt("id_professor");
+					prof.setEndereco(bd.rs.getString("endereco_professor"));
+					prof.setNome(bd.rs.getString("nome_professor"));
+					prof.setTelefone(bd.rs.getString("telefone_professor"));
+					prof.setEmail(bd.rs.getString("email_professor"));
+					prof.setRg(bd.rs.getString("rg_professor"));
+					prof.setCpf(bd.rs.getString("cpf_professor"));
+					
+					listaProfessores.add(prof);
+				}
+				
+				return listaProfessores;
+			} catch(SQLException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	@Override

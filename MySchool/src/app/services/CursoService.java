@@ -12,6 +12,7 @@ public class CursoService implements BaseService {
 	private BD bd = null;
 	private Curso c = null;
 	private Disciplina d = null;
+	private ArrayList<Object> listaCursos;
 
 	@Override
 	public String create(Object obj) {
@@ -84,8 +85,31 @@ public class CursoService implements BaseService {
 
 	@Override
 	public ArrayList<Object> getMany() {
-		// TODO Auto-generated method stub
-		return null;
+		bd = new BD();
+		if(bd.getConnection()) {
+			String sql = "SELECT * FROM tb_curso";
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.rs = bd.st.executeQuery();
+				
+				while(bd.rs.next()) {
+					c = new Curso();
+					
+					c.id = bd.rs.getInt("id_curso");
+					c.setNome(bd.rs.getString("nome_curso"));
+					c.setDescricao(bd.rs.getString("descricao_curso"));
+					c.setDuracao(bd.rs.getString("duracao_curso"));
+					
+					listaCursos.add(c);
+				}
+				
+				return listaCursos;
+			} catch(SQLException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	@Override

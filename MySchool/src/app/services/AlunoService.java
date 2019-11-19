@@ -75,8 +75,36 @@ public class AlunoService implements BaseService {
 
 	@Override
 	public ArrayList<Object> getMany() {
-		// TODO Auto-generated method stub
-		return null;
+		BD bd = new BD();
+		ArrayList<Object> listaAlunos = new ArrayList<Object>();
+		
+		if(bd.getConnection()) {
+			String sql  = "SELECT * FROM tb_aluno";
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.rs = bd.st.executeQuery();
+				
+				while(bd.rs.next()) {
+					aluno = new Aluno();
+					
+					aluno.id = bd.rs.getInt("id_aluno");
+					aluno.setNome(bd.rs.getString("nome_aluno"));
+					aluno.setEndereco(bd.rs.getString("endereco_aluno"));
+					aluno.setEmail(bd.rs.getString("email_aluno"));
+					aluno.setCpf(bd.rs.getString("cpf_aluno"));
+					aluno.setRg(bd.rs.getString("rg_aluno"));
+					
+					listaAlunos.add(aluno);
+				}
+				
+				return listaAlunos;
+			} catch (SQLException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+		
 	}
 
 	@Override

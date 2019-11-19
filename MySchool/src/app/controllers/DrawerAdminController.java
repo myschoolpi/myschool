@@ -50,7 +50,9 @@ public class DrawerAdminController {
 
     @FXML
     void changePageTurma(ActionEvent event) {
-//    	changePage("cadastrarTurma.fxml");
+    	CadastrarTurmaController turmaController = new CadastrarTurmaController();
+    	topBarLb.setText("Cadastrar Turma");
+    	changePage("cadastrarTurma.fxml", turmaController);
     }
     
     @FXML
