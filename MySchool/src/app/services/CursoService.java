@@ -20,7 +20,7 @@ public class CursoService implements BaseService {
 		return null;
 	}
 	
-	public String createCursoComDisciplina(Curso c) {
+	public String createFullCurso(Curso c) {
 		bd = new BD();
 		
 		if(bd.getConnection()) {
@@ -42,7 +42,7 @@ public class CursoService implements BaseService {
 				if(bd.rs.next())
 					n = bd.rs.getInt(1);
 				else
-					return "Houve um erro ao criar o curso";
+					return "Houve um erro ao cadastrar o curso";
 				
 				//inserção na tabela auxiliar entre curso e disciplina
 				sql = "INSERT INTO tb_curso_disciplina(id_curso, id_disciplina) " +
@@ -55,6 +55,7 @@ public class CursoService implements BaseService {
 					bd.st.setInt(2, d.id);
 					
 					bd.st.addBatch();
+					count++;
 					
 					if(count % 100 == 0 || count == c.getDisciplinas().size()) {
 						bd.st.executeBatch();
@@ -86,6 +87,7 @@ public class CursoService implements BaseService {
 	@Override
 	public ArrayList<Object> getMany() {
 		bd = new BD();
+		listaCursos = new ArrayList<Object>();
 		if(bd.getConnection()) {
 			String sql = "SELECT * FROM tb_curso";
 			try {

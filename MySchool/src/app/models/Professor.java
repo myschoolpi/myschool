@@ -29,6 +29,11 @@ public class Professor extends User{
 		this.rg = rg;
 	}
 	
+	@Override
+    public String toString() {
+        return getNome();
+    }
+	
 	
 	
 	

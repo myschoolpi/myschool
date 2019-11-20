@@ -40,5 +40,8 @@ public class Curso extends BaseModel {
 		this.disciplinas = disciplinas;
 	}
 	
-	
+	@Override
+    public String toString() {
+        return getNome();
+    }
 }

@@ -51,7 +51,7 @@ public class CadastrarCursoController {
 
 		c.setDisciplinas(disciplinasCurso);
 
-		JOptionPane.showMessageDialog(null, cs.createCursoComDisciplina(c));
+		JOptionPane.showMessageDialog(null, cs.createFullCurso(c));
 	}
 
 	@FXML
