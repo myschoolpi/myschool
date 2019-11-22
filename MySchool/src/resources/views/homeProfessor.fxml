@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="hbox" stylesheets="@../css/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.HomeAdminController">
+   <children>
+      <HBox alignment="CENTER_LEFT" blendMode="SRC_ATOP" prefHeight="50.0" prefWidth="800.0" scaleZ="2.0" spacing="20.0" styleClass="top-bar" stylesheets="@../css/global.css">
+         <children>
+            <JFXHamburger onMouseClicked="#toggleDrawer" />
+            <Label fx:id="topBarLb" text="HOME">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="content" prefHeight="550.0" prefWidth="800.0">
+         <children>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="250.0" />
+            <VBox fx:id="page" prefHeight="550.0" prefWidth="550.0" />
+         </children>
+      </HBox>
+   </children>
+</FlowPane>
