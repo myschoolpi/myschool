@@ -65,6 +65,8 @@ public class CursoService implements BaseService {
 				return "Curso criado com sucesso!";
 			} catch (SQLException e) {
 				return "Houve um erro ao cadastrar o curso";
+			} finally {
+				bd.close();
 			}
 		} else {
 			return "Houve um erro na conexão com o banco de dados";
@@ -108,6 +110,8 @@ public class CursoService implements BaseService {
 				return listaCursos;
 			} catch(SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;

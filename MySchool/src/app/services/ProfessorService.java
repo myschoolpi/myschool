@@ -33,6 +33,8 @@ public class ProfessorService implements BaseService {
 					return "Houve um erro ao cadastrar o Professor";
 			} catch (SQLException e) {
 				return "Houve um erro ao cadastrar o Professor";
+			} finally {
+				bd.close();
 			}
 		} else {
 			return "Houve um erro na conexão com o Banco de dados";
@@ -70,6 +72,8 @@ public class ProfessorService implements BaseService {
 				return prof;
 			} catch (SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;
@@ -103,6 +107,8 @@ public class ProfessorService implements BaseService {
 				return listaProfessores;
 			} catch(SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;
@@ -140,6 +146,8 @@ public class ProfessorService implements BaseService {
 				return prof;
 			} catch (SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;

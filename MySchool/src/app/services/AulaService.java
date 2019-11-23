@@ -35,6 +35,8 @@ public class AulaService implements BaseService {
 
 			} catch (SQLException e) {
 				return "Houve um erro ao Lançar Aula";
+			} finally {
+				bd.close();
 			}
 		} else {
 			return "Houve um erro na conexão com o banco de dados";

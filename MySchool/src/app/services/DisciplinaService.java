@@ -29,6 +29,8 @@ public class DisciplinaService implements BaseService {
 					return "Houve um erro ao cadastrar a Disciplina";
 			} catch(SQLException e) {
 				return "Houve um erro ao cadastrar a Disciplina";
+			} finally {
+				bd.close();
 			}
 		} else {			
 			return "Houve um erro na conexão com o Banco de Dados";

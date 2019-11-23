@@ -69,6 +69,8 @@ public class TurmaService implements BaseService {
 				
 			} catch (SQLException e) {
 				return "Houve um erro ao cadastrar a Turma";
+			} finally {
+				bd.close();
 			}
 		} else {
 			return "Houve um erro na conexão com o banco de dados";

@@ -31,6 +31,8 @@ public class AlunoService implements BaseService {
 					return "Houve um erro ao cadastrar o Aluno";
 			} catch(SQLException e) {
 				return "Houve um erro ao cadastrar o Aluno";
+			} finally {
+				bd.close();
 			}
 		} else {
 			return "Houve um erro na conexão com o Banco de dados";
@@ -67,6 +69,8 @@ public class AlunoService implements BaseService {
 				return aluno;
 			} catch(SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;
@@ -100,6 +104,8 @@ public class AlunoService implements BaseService {
 				return listaAlunos;
 			} catch (SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;
@@ -137,6 +143,8 @@ public class AlunoService implements BaseService {
 				return aluno;
 			} catch(SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;

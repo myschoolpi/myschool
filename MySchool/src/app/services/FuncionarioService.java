@@ -50,6 +50,8 @@ public class FuncionarioService implements BaseService {
 				return func;
 			} catch(SQLException e) {
 				return null;
+			} finally {
+				bd.close();
 			}
 		} else {
 			return null;
