@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.*;
 
+import app.models.Funcionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 public class HomeAdminController {
+	private Funcionario user = null;
 
 	@FXML
 	private HBox content;
@@ -38,12 +40,17 @@ public class HomeAdminController {
 		try {
 			loader = new FXMLLoader(getClass().getResource("/resources/views/drawerAdmin.fxml"));
 			DrawerAdminController drawerController = new DrawerAdminController(page, topBarLb);
+			drawerController.initData(user);
 			loader.setController(drawerController);
 			box = loader.load();
 			drawer.setSidePane(box);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void initData(Funcionario f) {
+		user = f;
 	}
 
 	/**

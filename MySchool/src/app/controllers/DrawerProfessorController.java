@@ -2,6 +2,7 @@ package app.controllers;
 
 import java.io.IOException;
 
+import app.models.Professor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,12 @@ import javafx.scene.layout.VBox;
 public class DrawerProfessorController {
 	private VBox content = null;
 	private Label topBarLb = null;
+	private Professor user = null;
 
 	@FXML
 	void changePageAula(ActionEvent event) {
 		LancarAulaController ac = new LancarAulaController();
+		ac.initData(user);
 		topBarLb.setText("Cadastrar Aluno");
 		changePage("lancarAula.fxml", ac);
 	}
@@ -27,6 +30,10 @@ public class DrawerProfessorController {
 	@FXML
 	void changePageNota(ActionEvent event) {
 
+	}
+	
+	public void initData(Professor prof) {
+		user = prof;
 	}
 
 	public void changePage(String pageName, Object controller) {

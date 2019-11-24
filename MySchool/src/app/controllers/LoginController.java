@@ -56,7 +56,9 @@ public class LoginController {
 			aluno = alunoService.alunoLogin(email, senha);
 			
 			if(aluno !=null){
-				sc.changeScreen(event, "homeAluno.fxml");
+				HomeAlunoController ac = new HomeAlunoController();
+				ac.initData(aluno);
+				sc.changeScreen(event, "homeAluno.fxml", ac);
 			} else {
 				System.out.println("N EXISTE");
 			}
@@ -65,7 +67,9 @@ public class LoginController {
 			prof = professorService.professorLogin(email, senha);
 			
 			if(prof !=null){
-				sc.changeScreen(event, "homeProfessor.fxml");
+				HomeProfessorController pc = new HomeProfessorController();
+				pc.initData(prof);
+				sc.changeScreen(event, "homeProfessor.fxml", pc);
 			} else {
 				System.out.println("N EXISTE");
 			}
@@ -75,7 +79,8 @@ public class LoginController {
 			
 			if(func !=null ){
 				if(func.getCargo().id == CARGO_ADMIN) {
-					sc.changeScreen(event, "homeAdmin.fxml");
+					HomeAdminController ac = new HomeAdminController();
+					sc.changeScreen(event, "homeAdmin.fxml", ac);
 				} else {
 					System.out.println("ACESSO NEGADO");
 				}

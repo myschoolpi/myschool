@@ -71,5 +71,10 @@ public class Turma extends BaseModel {
 		this.alunosTurma = alunosTurma;
 	}
 	
+	@Override
+	public String toString() {
+		return this.getCursoTurma().getNome() + " - " + id;
+	}
+	
 	
 }

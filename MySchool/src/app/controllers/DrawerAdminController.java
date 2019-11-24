@@ -2,6 +2,7 @@ package app.controllers;
 
 import java.io.IOException;
 
+import app.models.Funcionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.layout.*;
 public class DrawerAdminController {
 	private VBox content = null;
 	private Label topBarLb = null;
+	private Funcionario user = null;
 	
 	@FXML
     private Button cadastrarCursoBt;
@@ -73,6 +75,10 @@ public class DrawerAdminController {
 			e.printStackTrace();
 		}
 	}
+    
+    public void initData(Funcionario f) {
+    	user = f;
+    }
 	
 	public DrawerAdminController(VBox content, Label topBarLb) {
 		this.topBarLb = topBarLb;

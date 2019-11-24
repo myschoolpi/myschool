@@ -7,10 +7,11 @@ import app.models.User;
 
 public class AlunoService implements BaseService {
 	private Aluno aluno = null;
+	private BD bd = null;
 
 	@Override
 	public String create(Object obj) {
-		BD bd = new BD();
+		bd = new BD();
 		if(bd.getConnection()) {
 			String sql = "INSERT INTO tb_aluno(nome_aluno, endereco_aluno, email_aluno, cpf_aluno, rg_aluno, senha)" +
 					"VALUES(?, ?, ?, ?, ?, ?)";
@@ -79,7 +80,7 @@ public class AlunoService implements BaseService {
 
 	@Override
 	public ArrayList<Object> getMany() {
-		BD bd = new BD();
+		bd = new BD();
 		ArrayList<Object> listaAlunos = new ArrayList<Object>();
 		
 		if(bd.getConnection()) {
@@ -120,7 +121,7 @@ public class AlunoService implements BaseService {
 	}
 	
 	public Aluno alunoLogin(String email, String senha) {
-		BD bd = new BD();
+		bd = new BD();
 		if(bd.getConnection()) {
 			String sql = "SELECT * FROM tb_aluno WHERE tb_aluno.email_aluno = ? AND tb_aluno.senha = ?";
 			try {
@@ -141,6 +142,38 @@ public class AlunoService implements BaseService {
 					aluno.setEndereco(bd.rs.getString("endereco_aluno"));
 				}
 				return aluno;
+			} catch(SQLException e) {
+				return null;
+			} finally {
+				bd.close();
+			}
+		} else {
+			return null;
+		}
+	}
+	
+	public ArrayList<Aluno> getAlunosTurma(int idTurma) {
+		bd = new BD();
+		if(bd.getConnection()) {
+			String sql = "SELECT * FROM tb_aluno a INNER JOIN tb_aluno_turma t " +
+					"ON a.id_aluno = t.id_aluno "+
+					"WHERE id_turma = " + idTurma;
+			ArrayList<Aluno> listaAlunos = new ArrayList<Aluno>();
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.rs = bd.st.executeQuery();
+				
+				while(bd.rs.next()) {
+					aluno = new Aluno();
+					
+					aluno.id = bd.rs.getInt("id_aluno");
+					aluno.setNome(bd.rs.getString("nome_aluno"));
+					
+					listaAlunos.add(aluno);
+				}
+				
+				return listaAlunos;
+				
 			} catch(SQLException e) {
 				return null;
 			} finally {

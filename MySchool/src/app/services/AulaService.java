@@ -1,13 +1,16 @@
 package app.services;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import app.models.Aluno;
 import app.models.Aula;
 
 public class AulaService implements BaseService {
 	private BD bd = null;
+	private Aula aula = null;
 
 	@Override
 	public String create(Object obj) {
@@ -31,6 +34,23 @@ public class AulaService implements BaseService {
 				else
 					return "Houve um erro ao Lançar Aula";
 				
+				//inserção na tabela auxiliar entre aluno e aula
+				sql = "INSERT INTO tb_aluno_aula(id_aluno, id_aula) VALUES(?, ?)";
+				bd.st = bd.con.prepareStatement(sql);
+				
+				int count = 0;
+				for(Aluno a: ((Aula) obj).getAlunosAula()) {
+					bd.st.setInt(1, a.id);
+					bd.st.setInt(2, n);
+
+					bd.st.addBatch();
+					count++;
+
+					if (count % 100 == 0 || count == ((Aula) obj).getAlunosAula().size()) {
+						bd.st.executeBatch();
+					}
+				}
+				
 				return "Aula lançada";
 
 			} catch (SQLException e) {
@@ -40,6 +60,36 @@ public class AulaService implements BaseService {
 			}
 		} else {
 			return "Houve um erro na conexão com o banco de dados";
+		}
+	}
+	
+	public Aula getAulaByDate(Date d, int idTurma) {
+		bd = new BD();
+		if(bd.getConnection()) {
+			String sql = "SELECT * FROM tb_aula au INNER JOIN tb_aluno_aula aa "
+						+ "ON au.id_aula = aa.id_aula "
+						+ "WHERE au.data_aula = " + d
+						+ " AND au.id_turma = " + idTurma;
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.rs = bd.st.executeQuery();
+				
+				while(bd.rs.next()) {
+					aula = new Aula();
+					
+					aula.setData(bd.rs.getDate("data_aula"));
+					aula.setDescricao(bd.rs.getString("descricao_aula"));
+					aula.setIdTurma(bd.rs.getInt("id_turma"));
+				}
+				
+				return aula;
+			} catch(SQLException e) {
+				return null;
+			} finally {
+				bd.close();
+			}
+		} else {
+			return null;
 		}
 	}
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXDrawer;
 
+import app.models.Professor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -11,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 public class HomeProfessorController {
+	private Professor user = null;
+	
 	@FXML
 	private Label topBarLb;
 
@@ -33,12 +36,17 @@ public class HomeProfessorController {
 		try {
 			loader = new FXMLLoader(getClass().getResource("/resources/views/drawerProfessor.fxml"));
 			DrawerProfessorController drawerController = new DrawerProfessorController(page, topBarLb);
+			drawerController.initData(user);
 			loader.setController(drawerController);
 			box = loader.load();
 			drawer.setSidePane(box);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void initData(Professor prof) {
+		user = prof;
 	}
 
 	/**
