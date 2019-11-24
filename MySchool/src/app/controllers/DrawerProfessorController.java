@@ -18,13 +18,16 @@ public class DrawerProfessorController {
 	void changePageAula(ActionEvent event) {
 		LancarAulaController ac = new LancarAulaController();
 		ac.initData(user);
-		topBarLb.setText("Cadastrar Aluno");
+		topBarLb.setText("Lançamento de Aula");
 		changePage("lancarAula.fxml", ac);
 	}
 
 	@FXML
 	void changePageAvaliacao(ActionEvent event) {
-
+		MarcarAvaliacaoController ac = new MarcarAvaliacaoController();
+		ac.initData(user);
+		topBarLb.setText("Marcar Avaliação");
+		changePage("marcarAvaliacao.fxml", ac);
 	}
 
 	@FXML

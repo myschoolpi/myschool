@@ -64,7 +64,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#lancarAula" styleClass="login-button" stylesheets="@../css/global.css" text="CADASTRAR" textFill="WHITE">
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#lancarAula" styleClass="login-button" stylesheets="@../css/global.css" text="LANÇAR AULA" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
