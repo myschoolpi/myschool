@@ -68,10 +68,12 @@ public class AulaService implements BaseService {
 		if(bd.getConnection()) {
 			String sql = "SELECT * FROM tb_aula au INNER JOIN tb_aluno_aula aa "
 						+ "ON au.id_aula = aa.id_aula "
-						+ "WHERE au.data_aula = " + d
-						+ " AND au.id_turma = " + idTurma;
+						+ "WHERE au.data_aula = ?"
+						+ " AND au.id_turma = ?";
 			try {
 				bd.st = bd.con.prepareStatement(sql);
+				bd.st.setDate(1, d);
+				bd.st.setInt(2, idTurma);
 				bd.rs = bd.st.executeQuery();
 				
 				while(bd.rs.next()) {

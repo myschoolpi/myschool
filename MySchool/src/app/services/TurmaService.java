@@ -83,10 +83,10 @@ public class TurmaService implements BaseService {
 		if (bd.getConnection()) {
 			ArrayList<Turma> listaTurma = new ArrayList<Turma>();
 			String sql = "SELECT * FROM tb_turma t INNER JOIN tb_curso c " + "ON t.id_curso = c.id_curso "
-					+ "INNER JOIN turma_professor tp ON t.id_turma = tp.id_turma " + "WHERE tp.id_professor = "
-					+ idProfessor;
+					+ "INNER JOIN turma_professor tp ON t.id_turma = tp.id_turma " + "WHERE tp.id_professor = ?";
 			try {
 				bd.st = bd.con.prepareStatement(sql);
+				bd.st.setInt(1, idProfessor);
 				bd.rs = bd.st.executeQuery();
 				
 				while(bd.rs.next()) {

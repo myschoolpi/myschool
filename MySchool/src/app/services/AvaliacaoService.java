@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import app.models.AlunoNota;
 import app.models.Avaliacao;
 
 public class AvaliacaoService implements BaseService {
@@ -42,63 +43,79 @@ public class AvaliacaoService implements BaseService {
 
 	public String marcarAvaliacao(Avaliacao a, int idTurma) {
 		bd = new BD();
-		if(bd.getConnection()) {
-			String sql = "INSERT INTO tb_avaliacao(descricao_avaliacao, data_avaliacao) "
-					+ "VALUES(?, ?)";
+		if (bd.getConnection()) {
+			String sql = "INSERT INTO tb_avaliacao(descricao_avaliacao, data_avaliacao, id_turma) " + "VALUES(?, ?, ?)";
 			try {
-				bd.st = bd.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				bd.st = bd.con.prepareStatement(sql);
 				bd.st.setString(1, a.getDescricao());
 				bd.st.setDate(2, a.getData());
-				
+				bd.st.setInt(3, idTurma);
+
 				bd.st.executeUpdate();
 
-				bd.rs = bd.st.getGeneratedKeys();
-
-				// id da avaliacao inserida
-				int n;
-
-				if (bd.rs.next())
-					n = bd.rs.getInt(1);
-				else
-					return "Houve um erro ao marcar Avaliação";
-				
-				sql = "SELECT id_aluno_turma FROM tb_aluno_turma WHERE id_turma = " + idTurma;
-				bd.st = bd.con.prepareStatement(sql);
-				bd.rs = bd.st.executeQuery();
-				
-				ArrayList<Integer> idAlunosTurma = new ArrayList<Integer>();
-				
-				while(bd.rs.next()) {
-					idAlunosTurma.add(bd.rs.getInt("id_aluno_turma"));
-				}
-				
-				sql = "INSERT INTO tb_aluno_turma_avaliacao(id_aluno_turma, id_avaliacao, nota_avaliacao) "
-						+ "VALUES(?, ?, ?)";
-				bd.st = bd.con.prepareStatement(sql);
-				
-				int count = 0;
-				while(count < idAlunosTurma.size()) {
-					bd.st.setInt(1, idAlunosTurma.get(count));
-					bd.st.setInt(2, n);
-					bd.st.setDouble(3, 0);
-					
-					bd.st.addBatch();
-					count ++;
-					
-					if (count % 100 == 0 || count == idAlunosTurma.size()) {
-						bd.st.executeBatch();
-					}
-				}
-				
 				return "Avaliacao Marcada";
-				
-			} catch (SQLException e)  {
+
+			} catch (SQLException e) {
 				return "Houve um erro ao Marcar Avaliação";
 			} finally {
 				bd.close();
 			}
 		} else {
 			return "Houve um erro na conexão com o Banco de Dados";
+		}
+	}
+
+	public String lancarNotas(Avaliacao a, ArrayList<AlunoNota> alunoNotas, int idTurma) {
+		bd = new BD();
+		if (bd.getConnection()) {
+			String sql = "SELECT id_avaliacao FROM tb_avaliacao WHERE id_turma = ?"
+					+ " AND descricao_avaliacao = ?";
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.st.setInt(1, idTurma);
+				bd.st.setString(2, a.getDescricao());
+				bd.rs = bd.st.executeQuery();
+
+				int idAvaliacao = 0;
+				if (bd.rs.next()) {
+					idAvaliacao = bd.rs.getInt("id_avaliacao");
+
+					for (AlunoNota an : alunoNotas) {
+						sql = "SELECT id_aluno_turma FROM tb_aluno_turma WHERE id_aluno = ?"
+								+ " AND id_turma = ?"; 
+						bd.st = bd.con.prepareStatement(sql);
+						bd.st.setInt(1, an.getIdAluno());
+						bd.st.setInt(2, idTurma);
+						bd.rs = bd.st.executeQuery();
+
+						int idAlunoTurma = 0;
+						if (bd.rs.next()) {
+							idAlunoTurma = bd.rs.getInt("id_aluno_turma");
+
+							sql = "INSERT INTO tb_aluno_turma_avaliacao(id_aluno_turma, id_avaliacao, nota_avaliacao) "
+									+ "VALUES(?, ?, ?)";
+							bd.st = bd.con.prepareStatement(sql);
+							bd.st.setInt(1, idAlunoTurma);
+							bd.st.setInt(2, idAvaliacao);
+							bd.st.setDouble(3, an.getNota());
+
+							bd.st.executeUpdate();
+
+						}
+					}
+
+					return "Notas Lançadas";
+				}
+
+				return "Houve um erro ao lançar as notas";
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "Houve um erro ao lançar as notas";
+			} finally {
+				bd.close();
+			}
+		} else {
+			return "Houve um erro na conexão com o banco de dados";
 		}
 	}
 

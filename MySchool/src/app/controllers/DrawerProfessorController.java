@@ -32,7 +32,10 @@ public class DrawerProfessorController {
 
 	@FXML
 	void changePageNota(ActionEvent event) {
-
+		LancarNotaController nc = new LancarNotaController();
+		nc.initData(user);
+		topBarLb.setText("Lançar Nota");
+		changePage("lancarNota.fxml", nc);
 	}
 	
 	public void initData(Professor prof) {

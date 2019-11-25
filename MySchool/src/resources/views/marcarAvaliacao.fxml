@@ -5,12 +5,11 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="550.0" spacing="20.0" styleClass="bg" stylesheets="@../css/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="550.0" spacing="30.0" styleClass="bg" stylesheets="@../css/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="26.0" prefWidth="520.0" spacing="10.0">
          <children>
@@ -23,7 +22,16 @@
          </children>
       </HBox>
       <DatePicker fx:id="dataAvaliacao" onAction="#getAvaliacao" promptText="Data" />
-      <TextArea fx:id="descAvaliacaoTA" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" promptText="Descrição da Avaliação" />
+      <HBox prefHeight="15.0" prefWidth="520.0" spacing="10.0">
+         <children>
+            <ChoiceBox fx:id="avalicaoSelect" prefWidth="150.0" />
+            <Label text="Avaliação">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
       <Button fx:id="saveButton" mnemonicParsing="false" onAction="#marcarAvaliacao" styleClass="login-button" stylesheets="@../css/global.css" text="MARCAR AVALIAÇÃO" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="16.0" />
