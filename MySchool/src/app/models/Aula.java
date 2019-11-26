@@ -3,7 +3,7 @@ package app.models;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class Aula {
+public class Aula extends BaseModel{
 	private Date data;
 	private String descricao;
 	private ArrayList<Aluno> alunosAula;
