@@ -1,6 +1,7 @@
 package app.models;
 
 public class AlunoNota {
+	private int idAlunoNota;
 	private int idAluno;
 	private String nome;
 	private double nota;
@@ -38,4 +39,14 @@ public class AlunoNota {
 	public void setNota(double nota) {
 		this.nota = nota;
 	}
+
+	public int getIdAlunoNota() {
+		return idAlunoNota;
+	}
+
+	public void setIdAlunoNota(int idAlunoNota) {
+		this.idAlunoNota = idAlunoNota;
+	}
+	
+	
 }

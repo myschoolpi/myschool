@@ -87,10 +87,44 @@ public class LancarNotaController {
 			}
 		});
 
+		avalicaoSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				avaliacaoService = new AvaliacaoService();
+				String avaliacao = avalicaoSelect.getSelectionModel().getSelectedItem();
+				int idTurma = turmaSelect.getSelectionModel().getSelectedItem().id;
+
+				alunoNotas = avaliacaoService.getAvaliacaoNotas(avaliacao, idTurma);
+
+				if (alunoNotas != null && alunoNotas.size() > 0) {
+					listaTableAlunos.clear();
+					listaTableAlunos.addAll(alunoNotas);
+					
+					alunoTable.getItems().clear();
+					alunoTable.getItems().addAll(listaTableAlunos);
+					alunoTable.setEditable(true);
+					
+					saveButton.setText("Atualizar Notas");
+
+					saveButton.setOnAction((ActionEvent e) -> {
+						atualizarNotas(e);
+					});
+
+				}
+
+			}
+
+		});
+
 		avalicaoSelect.getItems().addAll("P1", "P2", "Trabalho");
 
 	}
 
+	void atualizarNotas(ActionEvent e) {
+		avaliacaoService = new AvaliacaoService();
+
+		JOptionPane.showMessageDialog(null, avaliacaoService.updateAlunoNotas(alunoNotas));
+	}
 
 	@FXML
 	void addNotaAluno(ActionEvent event) {
@@ -107,10 +141,10 @@ public class LancarNotaController {
 
 			listaTableAlunos.set(index, alunoNota);
 			alunoTable.getItems().set(index, alunoNota);
-			
+
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Digite um número válido");
-		} catch(NullPointerException e) {
+		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, "Selecione um aluno");
 		}
 	}
@@ -121,16 +155,16 @@ public class LancarNotaController {
 		avaliacaoService = new AvaliacaoService();
 		String descricao = avalicaoSelect.getSelectionModel().getSelectedItem();
 		int idTurma = turmaSelect.getSelectionModel().getSelectedItem().id;
-		
-		for(int i = 0; i< listaTableAlunos.size(); i++) {
+
+		for (int i = 0; i < listaTableAlunos.size(); i++) {
 			al = listaTableAlunos.get(i);
 			alunoNotas.add(al);
 		}
-		
+
 		a.setDescricao(descricao);
-		
+
 		JOptionPane.showMessageDialog(null, avaliacaoService.lancarNotas(a, alunoNotas, idTurma));
-		
+
 	}
 
 	public void initData(Professor prof) {

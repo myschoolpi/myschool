@@ -10,6 +10,8 @@ import app.models.Avaliacao;
 public class AvaliacaoService implements BaseService {
 	private BD bd = null;
 	private Avaliacao a = null;
+	private AlunoNota alunoNota;
+	private ArrayList<AlunoNota> listaAlunoNotas = new ArrayList<AlunoNota>();
 
 	@Override
 	public String create(Object obj) {
@@ -27,6 +29,80 @@ public class AvaliacaoService implements BaseService {
 	public Object getOne(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public ArrayList<AlunoNota> getAvaliacaoNotas(String avaliacaoDesc, int idTurma) {
+		bd = new BD();
+		if (bd.getConnection()) {
+			String sql = "SELECT id_avaliacao FROM tb_avaliacao WHERE descricao_avaliacao = ? " + "AND id_turma = ?";
+			try {
+				bd.st = bd.con.prepareStatement(sql);
+				bd.st.setString(1, avaliacaoDesc);
+				bd.st.setInt(2, idTurma);
+				bd.rs = bd.st.executeQuery();
+
+				if (bd.rs.next()) {
+					int idAvaliacao = 0;
+					idAvaliacao = bd.rs.getInt("id_avaliacao");
+
+					sql = "SELECT id_turma_avaliacao, nota_avaliacao, nome_aluno" + " FROM tb_aluno_turma_avaliacao "
+							+ "INNER JOIN tb_aluno_turma "
+							+ "ON tb_aluno_turma_avaliacao.id_aluno_turma = tb_aluno_turma.id_aluno_turma "
+							+ "INNER JOIN tb_aluno ON tb_aluno.id_aluno = tb_aluno_turma.id_aluno WHERE id_avaliacao = ?";
+					bd.st = bd.con.prepareStatement(sql);
+					bd.st.setInt(1, idAvaliacao);
+					bd.rs = bd.st.executeQuery();
+
+					while (bd.rs.next()) {
+						alunoNota = new AlunoNota();
+
+						alunoNota.setIdAlunoNota(bd.rs.getInt("id_turma_avaliacao"));
+						alunoNota.setNota(bd.rs.getDouble("nota_avaliacao"));
+						alunoNota.setNome(bd.rs.getString("nome_aluno"));
+
+						listaAlunoNotas.add(alunoNota);
+					}
+
+					return listaAlunoNotas;
+				}
+
+				return null;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} finally {
+				bd.close();
+			}
+		} else {
+			return null;
+		}
+	}
+
+	public String updateAlunoNotas(ArrayList<AlunoNota> alunosNotas) {
+		bd = new BD();
+
+		if (bd.getConnection()) {
+			try {
+				for (AlunoNota alunoNota : alunosNotas) {
+					String sql = "UPDATE tb_aluno_turma_avaliacao SET nota_avaliacao = ? "
+							+ "WHERE id_turma_avaliacao = ?";
+
+					bd.st = bd.con.prepareStatement(sql);
+					bd.st.setDouble(1, alunoNota.getNota());
+					bd.st.setInt(2, alunoNota.getIdAlunoNota());
+
+					bd.st.executeUpdate();
+				}
+			} catch (SQLException e) {
+				return "Houve um erro ao atualizar as notas";
+			} finally {
+				bd.close();
+			}
+
+			return "Notas Atualizadas";
+		} else {
+			return "Houve um erro na conexão com o Banco de Dados";
+		}
 	}
 
 	@Override
@@ -68,8 +144,7 @@ public class AvaliacaoService implements BaseService {
 	public String lancarNotas(Avaliacao a, ArrayList<AlunoNota> alunoNotas, int idTurma) {
 		bd = new BD();
 		if (bd.getConnection()) {
-			String sql = "SELECT id_avaliacao FROM tb_avaliacao WHERE id_turma = ?"
-					+ " AND descricao_avaliacao = ?";
+			String sql = "SELECT id_avaliacao FROM tb_avaliacao WHERE id_turma = ?" + " AND descricao_avaliacao = ?";
 			try {
 				bd.st = bd.con.prepareStatement(sql);
 				bd.st.setInt(1, idTurma);
@@ -81,8 +156,7 @@ public class AvaliacaoService implements BaseService {
 					idAvaliacao = bd.rs.getInt("id_avaliacao");
 
 					for (AlunoNota an : alunoNotas) {
-						sql = "SELECT id_aluno_turma FROM tb_aluno_turma WHERE id_aluno = ?"
-								+ " AND id_turma = ?"; 
+						sql = "SELECT id_aluno_turma FROM tb_aluno_turma WHERE id_aluno = ?" + " AND id_turma = ?";
 						bd.st = bd.con.prepareStatement(sql);
 						bd.st.setInt(1, an.getIdAluno());
 						bd.st.setInt(2, idTurma);
