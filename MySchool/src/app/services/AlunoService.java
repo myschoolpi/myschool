@@ -120,6 +120,12 @@ public class AlunoService implements BaseService {
 		return 0;
 	}
 	
+	/**
+	 * Irá realizar uma consulta na tabela de alunos, como filtro o email e senha
+	 * @param email - email do aluno
+	 * @param senha - senha do aluno
+	 * @return - null ou o Aluno está se logando
+	 */
 	public Aluno alunoLogin(String email, String senha) {
 		bd = new BD();
 		if(bd.getConnection()) {
@@ -152,6 +158,12 @@ public class AlunoService implements BaseService {
 		}
 	}
 	
+	/**
+	 * Irá realizar uma consulta no banco de dados,
+	 * puxando todos os alunos de uma determiada turma
+	 * @param idTurma - id da turma
+	 * @return - lista de alunos da turma
+	 */
 	public ArrayList<Aluno> getAlunosTurma(int idTurma) {
 		bd = new BD();
 		if(bd.getConnection()) {

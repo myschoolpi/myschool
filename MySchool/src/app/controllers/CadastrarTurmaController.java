@@ -50,7 +50,12 @@ public class CadastrarTurmaController {
 	
 	@FXML
     private TextField diasTF;
-
+	
+	/**
+	 * Chamada ao inicializar a tela,
+	 * irá baixar todos os alunos e professores,
+	 * colocando os alunos numa tabela e os professores numa caixa de seleção
+	 */
 	@FXML
 	private void initialize() {
 		as = new AlunoService();
@@ -84,6 +89,11 @@ public class CadastrarTurmaController {
 
 	}
 	
+	/**
+	 * Irá adicionar o aluno selecionado na tabela na lista de alunos da turma,
+	 * verificando se ele já foi adicionado anteriormente
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
     void addAluno(ActionEvent event) {
 		Aluno a = alunoTable.getSelectionModel().getSelectedItem();
@@ -104,6 +114,12 @@ public class CadastrarTurmaController {
 			JOptionPane.showMessageDialog(null, "Você já selecionou este aluno");
     }
 
+	/**
+	 * Irá pegar todos os dados inseridos e criar uma nova turma,
+	 * chamar a função que a insere no banco de dados,
+	 * mostrando a resposta num diálogo
+	 * @param event - evento de clique do botão
+	 */
     @FXML
     void cadastrarTurma(ActionEvent event) {
     	t = new Turma();
@@ -118,6 +134,11 @@ public class CadastrarTurmaController {
     	JOptionPane.showMessageDialog(null, ts.createFullTurma(t));
     }
 
+    /**
+     * Irá remover o aluno selecionado na tabela da lista de alunos da turma,
+     * verificando se ele já foi adicionado anteriormente
+     * @param event - evento de clique do botão
+     */
     @FXML
     void removeAluno(ActionEvent event) {
     	Aluno a = alunoTable.getSelectionModel().getSelectedItem();
@@ -130,6 +151,10 @@ public class CadastrarTurmaController {
 		}
     }
 
+    /**
+     * Irá mostrar todos os alunos adicionados, num diálogo
+     * @param event - evento de clique do botão
+     */
     @FXML
     void verAlunos(ActionEvent event) {
     	String alunos = "";

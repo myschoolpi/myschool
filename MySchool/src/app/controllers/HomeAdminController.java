@@ -31,7 +31,8 @@ public class HomeAdminController {
 	public JFXDrawer drawer;
 
 	/**
-	 * Chamada quando carregar o arquivo FXML
+	 * Chamada quando carregar o arquivo FXML,
+	 * irá mudar para a tela inicial e carregar a aba de navegação
 	 */
 	@FXML
 	private void initialize() {
@@ -49,6 +50,10 @@ public class HomeAdminController {
 		}
 	}
 	
+	/**
+	 * irá puxar o usuário logado
+	 * @param f - Funcionário que se logou
+	 */
 	public void initData(Funcionario f) {
 		user = f;
 	}

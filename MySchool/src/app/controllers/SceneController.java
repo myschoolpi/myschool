@@ -8,6 +8,12 @@ import javafx.scene.*;
 import javafx.stage.Stage;
 
 public class SceneController {
+	/**
+	 * Irá mudar de janela, carregando uma tela nova
+	 * @param event - evento de clique do botão
+	 * @param screenName - Nome do arquivo da tela a ser mudada
+	 * @param controller - Controlador da tela a ser mudada
+	 */
 	void changeScreen(ActionEvent event, String screenName, Object controller)  {
 		
 		FXMLLoader loader;

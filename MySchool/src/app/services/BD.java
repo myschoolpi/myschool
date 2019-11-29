@@ -18,6 +18,10 @@ public class BD {
 		bd.close();
 	}
 	
+	/**
+	 * Irá se conectar com o banco de dados
+	 * @return - true se a conexão deu certo, false se deu errado
+	 */
 	public boolean getConnection() {
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, SENHA);
@@ -29,6 +33,9 @@ public class BD {
 		}
 	}
 	
+	/**
+	 * Irá fechar a conexão com o banco de dados
+	 */
 	public void close() {
 		try { if(rs!=null) rs.close(); }
 		catch(SQLException e) {}

@@ -55,6 +55,10 @@ public class LancarNotaController {
 	@FXML
 	private Button saveButton;
 
+	/**
+	 * Chamada ao inicializar
+	 * irá baixar todas as turmas do professor logado e adicioná-las numa caixa de seleção
+	 */
 	@FXML
 	private void initialize() {
 		as = new AlunoService();
@@ -73,6 +77,9 @@ public class LancarNotaController {
 		}
 
 		turmaSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Turma>() {
+			/**
+			 *Irá baixar os alunos da turma selecionada
+			 */
 			@Override
 			public void changed(ObservableValue<? extends Turma> observable, Turma oldValue, Turma newValue) {
 				listaAlunos = as.getAlunosTurma(newValue.id);
@@ -88,6 +95,10 @@ public class LancarNotaController {
 		});
 
 		avalicaoSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			/**
+			 * Irá baixar a avaliação selecionada
+			 * e mudar a estrutura da tela para atualização de nota
+			 */
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				avaliacaoService = new AvaliacaoService();
@@ -120,12 +131,20 @@ public class LancarNotaController {
 
 	}
 
+	/**
+	 * Chama a função que atualiza as notas dos alunos no banco de dados
+	 * @param e - evento de clique do botão
+	 */
 	void atualizarNotas(ActionEvent e) {
 		avaliacaoService = new AvaliacaoService();
 
 		JOptionPane.showMessageDialog(null, avaliacaoService.updateAlunoNotas(alunoNotas));
 	}
 
+	/**
+	 * Irá adicionar uma nota para o aluno selecionado
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void addNotaAluno(ActionEvent event) {
 		String avaliacao = avalicaoSelect.getSelectionModel().getSelectedItem();
@@ -149,6 +168,10 @@ public class LancarNotaController {
 		}
 	}
 
+	/**Pega todos os dados inseridos e
+	 * Chama a função que adiciona as notas dos alunos no banco de dados
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void lancarNotas(ActionEvent event) {
 		a = new Avaliacao();
@@ -167,6 +190,10 @@ public class LancarNotaController {
 
 	}
 
+	/**
+	 * Irá puxar o usuário logado
+	 * @param prof - Professor logado
+	 */
 	public void initData(Professor prof) {
 		user = prof;
 	}

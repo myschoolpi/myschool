@@ -29,13 +29,25 @@ public class DrawerAdminController {
     @FXML
     private Button cadastrarTurmaBt;
     
+    /**
+     * Puxa o arquivo fxml e configura um controlador para ele,
+     * mudando a tela para cadastrar aluno e
+     * mudando o título para Cadastrar Aluno
+     * @param event - evento de clique do botão
+     */
     @FXML
     void changePageAluno(ActionEvent event) {
     	CadastrarAlunoController alunoController = new CadastrarAlunoController();
     	topBarLb.setText("Cadastrar Aluno");
 		changePage("cadastrarAluno.fxml", alunoController);
     }
-
+    
+    /**
+     * Puxa o arquivo fxml e configura um controlador para ele,
+     * mudando a tela para cadastrar curso e
+     * mudando o título para Cadastrar Curso
+     * @param event - evento de clique do botão
+     */
     @FXML
     void changePageCurso(ActionEvent event) {
     	CadastrarCursoController cursoController = new CadastrarCursoController();
@@ -43,6 +55,12 @@ public class DrawerAdminController {
     	changePage("cadastrarCurso.fxml", cursoController);
     }
 
+    /**
+     * Puxa o arquivo fxml e configura um controlador para ele,
+     * mudando a tela para cadastrar professor e
+     * mudando o título para Cadastrar Professor
+     * @param event - evento de clique do botão
+     */
     @FXML
     void changePageProf(ActionEvent event) {
     	CadastrarProfessorController profController = new CadastrarProfessorController();
@@ -50,6 +68,12 @@ public class DrawerAdminController {
     	changePage("cadastrarProf.fxml", profController);
     }
 
+    /**
+     * Puxa o arquivo fxml e configura um controlador para ele,
+     * mudando a tela para cadastrar turma e
+     * mudando o título para Cadastrar Turma
+     * @param event - evento de clique do botão
+     */
     @FXML
     void changePageTurma(ActionEvent event) {
     	CadastrarTurmaController turmaController = new CadastrarTurmaController();
@@ -57,6 +81,12 @@ public class DrawerAdminController {
     	changePage("cadastrarTurma.fxml", turmaController);
     }
     
+    /**
+     * Puxa o arquivo fxml e configura um controlador para ele,
+     * mudando a tela para cadastrar disciplina e
+     * mudando o título para Cadastrar Disciplina
+     * @param event - evento de clique do botão
+     */
     @FXML
     void changePageDisciplina(ActionEvent event) {
     	CadastrarDisciplinaController disciplinaController = new CadastrarDisciplinaController();
@@ -64,6 +94,11 @@ public class DrawerAdminController {
     	changePage("cadastrarDisciplina.fxml", disciplinaController);
     }
     
+    /**
+     * Irá mudar o conteúdo para uma nova página
+     * @param pageName - nome do arquivo fxml
+     * @param controller - controlador da tela a ser mudada
+     */
     public void changePage(String pageName, Object controller) {
     	FXMLLoader loader;
 		try{
@@ -76,10 +111,20 @@ public class DrawerAdminController {
 		}
 	}
     
+    /**
+     * Irá puxar o usuário logado
+     * @param f - Funcionário que logou
+     */
     public void initData(Funcionario f) {
     	user = f;
     }
 	
+    /**
+     * Irá receber os componentes conteúdo e o título,
+     * para mudá-los depois
+     * @param content - conteúdo onde irá ser mostrado as telas
+     * @param topBarLb - título da tela
+     */
 	public DrawerAdminController(VBox content, Label topBarLb) {
 		this.topBarLb = topBarLb;
 		this.content = content;

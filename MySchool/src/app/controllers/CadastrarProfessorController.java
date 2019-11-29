@@ -30,6 +30,12 @@ public class CadastrarProfessorController {
 	@FXML
 	private TextField rgTF;
 
+	/**
+	 * Irá pegar todos os dados inseridos, criar um novo professor,
+	 * chamar a função que o insere no banco de dados,
+	 * mostrando a resposta num diálogo
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void cadastrarProfessor(ActionEvent event) {
 		prof = new Professor();

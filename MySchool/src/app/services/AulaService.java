@@ -66,6 +66,14 @@ public class AulaService implements BaseService {
 		}
 	}
 
+	/**
+	 * Irá realizar uma consulta no banco puxando a aula e os alunos presentes naquela aula,
+	 * filtrando por turma e data da aula
+	 * @param d - data da aula
+	 * @param alunosTurma - todos os alunos da turma
+	 * @param idTurma - id da turma
+	 * @return - aula com os alunos
+	 */
 	public Aula getAulaByDate(Date d, ArrayList<Aluno> alunosTurma, int idTurma) {
 		bd = new BD();
 		if (bd.getConnection()) {
@@ -123,6 +131,13 @@ public class AulaService implements BaseService {
 		return null;
 	}
 
+	/**
+	 * Irá atualizar uma aula
+	 * @param aula - aula com nova lista de presença
+	 * @param oldAlunosAula - lista de presença antiga
+	 * @param id - id da aula
+	 * @return - mensagem d resposta
+	 */
 	public String updateAulaPresenca(Aula aula, ArrayList<Aluno> oldAlunosAula, int id) {
 		bd = new BD();
 		if (bd.getConnection()) {

@@ -39,7 +39,13 @@ public class CadastrarCursoController {
 
 	@FXML
 	private TextField duracaoTF;
-
+	
+	/**
+	 * Irá pegar todos os dados inseridos e criar um novo curso
+	 * e chamar a função que insere o curso no banco de dados,
+	 * mostrando a resposta num diálogo
+	 * @param event - evento clique do botão
+	 */
 	@FXML
 	public void cadastrarCurso(ActionEvent event) {
 		c = new Curso();
@@ -54,6 +60,10 @@ public class CadastrarCursoController {
 		JOptionPane.showMessageDialog(null, cs.createFullCurso(c));
 	}
 
+	/**
+	 * Chamada ao inicializar a tela,
+	 * irá baixar todas as disciplinas e adicioná-las em uma tabela
+	 */
 	@FXML
 	private void initialize() {
 		nomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -69,6 +79,11 @@ public class CadastrarCursoController {
 		disciplinaTable.setEditable(true);
 	}
 
+	/**
+	 * Irá adicionar uma disciplina na lista de disciplinas do curso a ser criado,
+	 * verificando se a disciplina já foi adicionada ou não
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	public void addDisciplina(ActionEvent event) {
 		Disciplina d = disciplinaTable.getSelectionModel().getSelectedItem();
@@ -89,6 +104,11 @@ public class CadastrarCursoController {
 
 	}
 
+	/**
+	 * Irá remover a disciplina da lista de disciplinas do curso a ser criado,
+	 * verificando se ela já foi adicionada anteriormente
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void removeDisciplina(ActionEvent event) {
 		Disciplina d = disciplinaTable.getSelectionModel().getSelectedItem();
@@ -101,6 +121,10 @@ public class CadastrarCursoController {
 		}
 	}
 
+	/**
+	 * Irá mostrar as disciplinas adicionadas, num diálogo
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void verDisciplinas(ActionEvent event) {
 		String disciplinas = "";

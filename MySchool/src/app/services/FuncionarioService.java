@@ -70,6 +70,12 @@ public class FuncionarioService implements BaseService {
 		return 0;
 	}
 	
+	/**
+	 * Irá realizar uma consulta, verificando se existe um funcionário com aquele email e senha
+	 * @param email - email do funcionário
+	 * @param senha - senha do funcionário
+	 * @return - Funcionário ou null se não existir
+	 */
 	public Funcionario funcionarioLogin(String email, String senha) {
 		BD bd = new BD();
 		if(bd.getConnection()) {

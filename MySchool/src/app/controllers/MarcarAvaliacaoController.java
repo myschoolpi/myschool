@@ -35,6 +35,9 @@ public class MarcarAvaliacaoController {
 	@FXML
 	private Button saveButton;
 
+	/**
+	 * Irá baixar todas as turmas do professor logado e colicá-las numa caixa de seleção
+	 */
 	@FXML
 	private void initialize() {
 		ts = new TurmaService();
@@ -48,6 +51,10 @@ public class MarcarAvaliacaoController {
 		avalicaoSelect.getItems().addAll("P1", "P2", "Trabalho");
 	}
 
+	/**
+	 * Irá puxar o usuário logado
+	 * @param prof - Professor logado
+	 */
 	public void initData(Professor prof) {
 		user = prof;
 	}
@@ -57,6 +64,11 @@ public class MarcarAvaliacaoController {
 
 	}
 
+	/**
+	 * Irá criar uma nova avaliação e 
+	 * chamar a função que a insere no banco de dados
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void marcarAvaliacao(ActionEvent event) {
 		a = new Avaliacao();

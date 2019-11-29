@@ -19,6 +19,10 @@ public class Turma extends BaseModel {
 		return periodo;
 	}
 	
+	/**
+	 * Irá criar um horário de acordo com o período selecionado
+	 * @return - horário do perído informado
+	 */
 	public Time getPeriodoTime() {
 		switch(periodo) {
 			case MANHA:

@@ -31,6 +31,12 @@ public class AvaliacaoService implements BaseService {
 		return null;
 	}
 
+	/**
+	 * Irá realizar uma consulta das notas de uma prova dos alunos de uma determinada turma
+	 * @param avaliacaoDesc - descrição da avaliação
+	 * @param idTurma - id da turma
+	 * @return lista de notas dos alunos da turma
+	 */
 	public ArrayList<AlunoNota> getAvaliacaoNotas(String avaliacaoDesc, int idTurma) {
 		bd = new BD();
 		if (bd.getConnection()) {
@@ -78,6 +84,11 @@ public class AvaliacaoService implements BaseService {
 		}
 	}
 
+	/**
+	 * Irá atualizar as notas dos alunos
+	 * @param alunosNotas - lista das notas atualizadas
+	 * @return - mensagem de resposta
+	 */
 	public String updateAlunoNotas(ArrayList<AlunoNota> alunosNotas) {
 		bd = new BD();
 
@@ -117,6 +128,12 @@ public class AvaliacaoService implements BaseService {
 		return 0;
 	}
 
+	/**
+	 * Irá inserir uma avaliação marcada numa determinada data
+	 * @param a - avaliação
+	 * @param idTurma - id da turma onde será aplicada a avaliação
+	 * @return - mensagem de resposta
+	 */
 	public String marcarAvaliacao(Avaliacao a, int idTurma) {
 		bd = new BD();
 		if (bd.getConnection()) {
@@ -141,6 +158,13 @@ public class AvaliacaoService implements BaseService {
 		}
 	}
 
+	/**
+	 * Irá inserir as notas de uma prova dos alunos de uma determinada turma
+	 * @param a - avaliação
+	 * @param alunoNotas - notas dos alunos
+	 * @param idTurma - id da turma
+	 * @return - mensagem de resposta
+	 */
 	public String lancarNotas(Avaliacao a, ArrayList<AlunoNota> alunoNotas, int idTurma) {
 		bd = new BD();
 		if (bd.getConnection()) {

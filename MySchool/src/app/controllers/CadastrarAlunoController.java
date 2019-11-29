@@ -27,7 +27,13 @@ public class CadastrarAlunoController {
 
     @FXML
     private TextField rgTF;
-
+    
+    /**
+     * irá pegar todos os dados inseridos, criar um novo aluno
+     * e chamar a função que insere o aluno no banco de dados,
+     * mostrando a resposta num diálogo
+     * @param event - evento de quando clicar no botão cadastrar
+     */
     @FXML
     void cadastrarAluno(ActionEvent event) {
     	aluno = new Aluno();

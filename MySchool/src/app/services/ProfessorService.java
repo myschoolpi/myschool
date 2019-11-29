@@ -121,6 +121,12 @@ public class ProfessorService implements BaseService {
 		return 0;
 	}
 
+	/**
+	 * Irá realizar uma consulta verificando se existe um professor com o email e senha informados
+	 * @param email - email do professor
+	 * @param senha - senha do professor
+	 * @return - Professor ou null
+	 */
 	public Professor professorLogin(String email, String senha) {
 		BD bd = new BD();
 		if (bd.getConnection()) {

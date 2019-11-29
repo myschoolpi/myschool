@@ -21,6 +21,12 @@ public class CadastrarDisciplinaController {
     @FXML
     private TextField cargaHorariaTF;
 
+    /**
+     * Irá pegar todos os dados inseridos e criar uma nova disciplina,
+     * chamando a função que a insere no banco de dados,
+     * mostrando a resposta num diálogo
+     * @param event - evento de clique do botão
+     */
     @FXML
     void cadastrarDisciplina(ActionEvent event) {
     	ds = new DisciplinaService();

@@ -27,7 +27,8 @@ public class HomeProfessorController {
 	private VBox page;
 	
 	/**
-	 * Chamada quando carregar o arquivo FXML
+	 * Chamada quando carregar o arquivo FXML,
+	 * irá carregar a aba de navegação
 	 */
 	@FXML
 	private void initialize() {
@@ -45,6 +46,10 @@ public class HomeProfessorController {
 		}
 	}
 	
+	/**
+	 * Irá puxar o usuário logado
+	 * @param prof - Professor que se logou
+	 */
 	public void initData(Professor prof) {
 		user = prof;
 	}

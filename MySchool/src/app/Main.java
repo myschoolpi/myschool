@@ -13,6 +13,10 @@ public class Main extends Application {
 		launch(args);
 	}
 	
+	/**
+	 * Função chamada pelo método main, irá configurar o tamanho da tela do sistema
+	 * e carregar a tela de Login
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("/resources/views/login.fxml"));

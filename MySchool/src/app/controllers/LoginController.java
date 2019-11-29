@@ -3,6 +3,9 @@ package app.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import javax.swing.JOptionPane;
+
 import app.models.*;
 import app.services.*;
 
@@ -41,6 +44,11 @@ public class LoginController {
 	@FXML
 	private RadioButton funcRB;
 	
+	/**
+	 * Irá pegar usuário, senha e a opção selecionada
+	 * e chamar a função que verifica se aquele usuário existe
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void login(ActionEvent event){
 		sc = new SceneController();
@@ -60,7 +68,7 @@ public class LoginController {
 				ac.initData(aluno);
 				sc.changeScreen(event, "homeAluno.fxml", ac);
 			} else {
-				System.out.println("N EXISTE");
+				JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos");
 			}
 		} else if (role.equals(PROFESSOR)) {
 			professorService = new ProfessorService();
@@ -71,7 +79,7 @@ public class LoginController {
 				pc.initData(prof);
 				sc.changeScreen(event, "homeProfessor.fxml", pc);
 			} else {
-				System.out.println("N EXISTE");
+				JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos");
 			}
 		} else if (role.equals(FUNC)) {
 			funcService = new FuncionarioService();
@@ -82,10 +90,10 @@ public class LoginController {
 					HomeAdminController ac = new HomeAdminController();
 					sc.changeScreen(event, "homeAdmin.fxml", ac);
 				} else {
-					System.out.println("ACESSO NEGADO");
+					JOptionPane.showMessageDialog(null, "Você não tem permissão");
 				}
 			} else {
-				System.out.println("N EXISTE");
+				JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos");
 			}
 			
 		} else {

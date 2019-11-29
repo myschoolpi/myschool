@@ -19,6 +19,11 @@ public class TurmaService implements BaseService {
 		return null;
 	}
 
+	/**
+	 * Irá inserir uma turma com todos os alunos
+	 * @param t - turma
+	 * @return - mensagem de resposta
+	 */
 	public String createFullTurma(Turma t) {
 		BD bd = new BD();
 		if (bd.getConnection()) {
@@ -78,6 +83,11 @@ public class TurmaService implements BaseService {
 		}
 	}
 
+	/**
+	 * Irá realizar uma consulta de todas as turmas de um professor
+	 * @param idProfessor - id do professor
+	 * @return - lista de turmas
+	 */
 	public ArrayList<Turma> getTurmasProfessor(int idProfessor) {
 		bd = new BD();
 		if (bd.getConnection()) {

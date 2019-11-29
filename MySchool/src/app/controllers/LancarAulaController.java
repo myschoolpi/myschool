@@ -57,6 +57,10 @@ public class LancarAulaController {
 	@FXML
 	private Button saveButton;
 
+	/**
+	 * Chamada ao inicialiazar a tela,
+	 * irá baixar todas as turmas do professor logado e colocá-las numa caixa de seleção,
+	 */
 	@FXML
 	private void initialize() {
 		as = new AlunoService();
@@ -70,6 +74,9 @@ public class LancarAulaController {
 		}
 
 		turmaSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Turma>() {
+			/**
+			 * Irá baixar os alunos da turma que foi selecionada
+			 */
 			@Override
 			public void changed(ObservableValue<? extends Turma> observable, Turma oldValue, Turma newValue) {
 				listaAlunos = as.getAlunosTurma(newValue.id);
@@ -83,10 +90,20 @@ public class LancarAulaController {
 
 	}
 
+	/**
+	 * Irá puxar o usuário que se logou
+	 * @param prof - Professor logado
+	 */
 	public void initData(Professor prof) {
 		user = prof;
 	}
 
+	/**
+	 * Irá baixar a aula da data selecionada, e irá mudar a
+	 * estrutura da página para atualização de aula,
+	 * se houver uma
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void getAula(ActionEvent event) {
 		aulaS = new AulaService();
@@ -112,6 +129,10 @@ public class LancarAulaController {
 		}
 	}
 
+	/**
+	 * Irá adicionar o aluno selecionado na lista de presença da aula
+	 * @param event
+	 */
 	@FXML
 	void addAluno(ActionEvent event) {
 		Aluno aluno = alunoTable.getSelectionModel().getSelectedItem();
@@ -132,6 +153,10 @@ public class LancarAulaController {
 			JOptionPane.showMessageDialog(null, "Você já selecionou este aluno");
 	}
 
+	/**
+	 * Irá chamar a função que atualiza a aula no banco de dados
+	 * @param event - evento de clique do botão
+	 */
 	void atualizarAula(ActionEvent event) {
 		aulaS = new AulaService();
 
@@ -141,6 +166,11 @@ public class LancarAulaController {
 		JOptionPane.showMessageDialog(null, aulaS.updateAulaPresenca(a, oldAlunosAula, a.id));
 	}
 
+	/**
+	 * Irá criar uma nova aula 
+	 * e chamar a função que insire a aula no banco
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void lancarAula(ActionEvent event) {
 		a = new Aula();
@@ -156,6 +186,10 @@ public class LancarAulaController {
 		JOptionPane.showMessageDialog(null, aulaS.create(a));
 	}
 
+	/**
+	 * irá remover o aluno selecionado da lista de presença
+	 * @param event
+	 */
 	@FXML
 	void removeAluno(ActionEvent event) {
 		int i = alunoTable.getSelectionModel().getSelectedIndex();
@@ -169,6 +203,10 @@ public class LancarAulaController {
 
 	}
 
+	/**
+	 * Irá mostrar os alunos adicionados na lista de presença
+	 * @param event - evento de clique do botão
+	 */
 	@FXML
 	void verAlunos(ActionEvent event) {
 		String alunos = "";

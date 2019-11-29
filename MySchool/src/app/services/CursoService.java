@@ -20,6 +20,11 @@ public class CursoService implements BaseService {
 		return null;
 	}
 	
+	/**
+	 * Irá inserir um curso com suas disciplinas
+	 * @param c - Curso
+	 * @return - mensagem de resposta
+	 */
 	public String createFullCurso(Curso c) {
 		bd = new BD();
 		
