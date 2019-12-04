@@ -25,7 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class LancarNotaController {
 	private Professor user;
 	private Avaliacao a;
-	private AlunoNota al;
+	private AlunoNota al = null;
 
 	private ArrayList<Aluno> listaAlunos;
 	private ArrayList<Turma> listaTurmas;
@@ -178,11 +178,9 @@ public class LancarNotaController {
 		avaliacaoService = new AvaliacaoService();
 		String descricao = avalicaoSelect.getSelectionModel().getSelectedItem();
 		int idTurma = turmaSelect.getSelectionModel().getSelectedItem().id;
-
-		for (int i = 0; i < listaTableAlunos.size(); i++) {
-			al = listaTableAlunos.get(i);
-			alunoNotas.add(al);
-		}
+		
+		alunoNotas = new ArrayList<AlunoNota>();
+		alunoNotas.addAll(listaTableAlunos);
 
 		a.setDescricao(descricao);
 
